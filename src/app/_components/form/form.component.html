@@ -1,0 +1,109 @@
+<div
+  style="
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  "
+>
+  <label
+    for="{{ label }}"
+    style="
+      color: #4a5568;
+      display: block;
+      margin-bottom: 0.5rem;
+      font-size: 0.875rem;
+      font-weight: 500;
+    "
+    [ngClass]="{
+      'text-red-700': control.errors && control.touched && control.invalid
+    }"
+  >
+    {{ label }}
+  </label>
+
+  <input
+    style="
+      padding: 10px;
+      border: 1px solid #d2d6dc;
+      margin: 10px;
+      background-color: #f7fafc;
+      color: #4a5568;
+      font-size: 0.875rem;
+      border-radius: 0.375rem;
+      width: 100%;
+      padding: 0.625rem;
+    "
+    [formControl]="control"
+    id="{{ label }}"
+    type="{{ type }}"
+    placeholder="{{ placeholder }}"
+    [ngClass]="{
+      'bg-red-50 border-red-500 text-red-900 placeholder-red-700 focus:ring-red-500 focus:border-red-500':
+        control.errors && control.touched && control.invalid
+    }"
+  />
+
+  <p
+    style="margin-top: 0.5rem; font-size: 0.875rem; color: #b83280"
+    *ngIf="control.errors?.['required'] && control.touched && control.invalid"
+  >
+    <span style="font-weight: 500">¡Error!</span> {{ requiredMessage }}
+  </p>
+
+  <!-- Repeat the above paragraph for each error message, replacing the ngIf condition and error text as needed -->
+
+  <p
+    style="margin-top: 0.5rem; font-size: 0.875rem; color: #b83280"
+    *ngIf="control.errors?.['invalidRut'] && control.touched && control.invalid"
+  >
+    <span style="font-weight: 500">¡Error!</span> El RUT es inválido
+  </p>
+
+  <p
+    style="margin-top: 0.5rem; font-size: 0.875rem; color: #b83280"
+    *ngIf="control.errors?.['minLenght'] && control.touched && control.invalid"
+  >
+    <span style="font-weight: 500">¡Error!</span> Debe tener al menos
+    {{ control.errors?.['minlength'].requiredLength }} caracteres
+  </p>
+
+  <p
+    style="margin-top: 0.5rem; font-size: 0.875rem; color: #b83280"
+    *ngIf="control.errors?.['maxLenght'] && control.touched && control.invalid"
+  >
+    <span style="font-weight: 500">¡Error!</span> Debe tener como máximo
+    {{ control.errors?.['maxlength'].requiredLength }} caracteres
+  </p>
+
+  <p
+    style="margin-top: 0.5rem; font-size: 0.875rem; color: #b83280"
+    *ngIf="control.errors?.['noMatching'] && control.touched && control.invalid"
+  >
+    <span style="font-weight: 500">¡Error!</span> Las contraseñas deben ser
+    iguales
+  </p>
+
+  <p
+    style="margin-top: 0.5rem; font-size: 0.875rem; color: #b83280"
+    *ngIf="control.errors?.['invalidDateFormat'] && control.touched && control.invalid"
+  >
+    <span style="font-weight: 500">¡Error!</span> El formato de la fecha es
+    inválido
+  </p>
+
+  <p
+    style="margin-top: 0.5rem; font-size: 0.875rem; color: #b83280"
+    *ngIf="control.errors?.['futureDate'] && control.touched && control.invalid"
+  >
+    <span style="font-weight: 500">¡Error!</span> La fecha debe ser menor a la
+    actual
+  </p>
+
+  <p
+    style="margin-top: 0.5rem; font-size: 0.875rem; color: #b83280"
+    *ngIf="control.errors?.['email'] && control.touched && control.invalid"
+  >
+    <span style="font-weight: 500">¡Error!</span> Correo electrónico es inválido
+  </p>
+</div>
